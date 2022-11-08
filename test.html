@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결정장애 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>결정장애 테스트</h1>
+    <a href="test.html">선택 초기화</a>
+    <article>
+        <h2>Q1.</h2>
+        <p>여러 가지 결정을 할 때, 자주 다른 사람의 의견을 물어본다.</p>
+        <input type="radio" name="q1" class="yes-button"><span>Yes</span>
+        <input type="radio" name="q1" class="no-button"><span>No</span>
+        <input type="radio" name="q1" class="maybe-button"><span>Maybe</span>
+    </article>
+    <article>
+        <h2>Q2.</h2>
+        <p>다른 사람의 의견을 들어도 여전히 고민된다.</p>
+        <input type="radio" name="q2" class="yes-button"><span>Yes</span>
+        <input type="radio" name="q2" class="no-button"><span>No</span>
+        <input type="radio" name="q2" class="maybe-button"><span>Maybe</span>
+    </article>
+    <br>
+    <footer>
+        <h3><a onclick="result();">결과보기</a></h3>
+    </footer>
+    <script>
+        function result() {
+
+            // yes개수, no개수 count
+            let yes_count = 0;
+            let no_count = 0;
+
+            let elements = document.getElementsByClassName('yes-button');
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].checked) {
+                    yes_count++;
+                }
+            }
+
+            elements = document.getElementsByClassName('no-button');
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].checked) {
+                    no_count++;
+                }
+            }
+
+            elements = document.getElementsByClassName('maybe-button');
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].checked) {
+                    yes_count++;
+                }
+            }
+
+            // 모두 선택하지 않았을 때 결과 페이지로 가지 않고 알림 띄우기
+            if (yes_count + no_count != 2) {
+                alert('결정이 힘들더라도 모든 선택지에 답해주세요!');
+                return // 코드 빠져나가기
+            }
+
+
+            // yes_count개수에 따라 각 결과 페이지로 이동
+            if (yes_count == 2) {
+                location.href = "result_3.html"
+            } else if (yes_count == 1) {
+                location.href = "result_2.html"
+            } else {
+                location.href = "result_1.html"
+            }
+        }
+    </script>
+</body>
+
+</html>
